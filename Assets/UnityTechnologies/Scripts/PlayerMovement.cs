@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float turnSpeed = 20f;
+    public float moveSpeed = 5f; 
+    public float runSpeedMultiplier = 2f; 
 
     Animator m_Animator;
     Rigidbody m_Rigidbody;
@@ -24,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
         m_Movement.Set(horizontal, 0f, vertical);
         m_Movement.Normalize();
+
+        float currentMoveSpeed = isRunning ? moveSpeed * runSpeedMultiplier : moveSpeed;
 
         bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
         bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
@@ -46,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation(desiredForward);
+
+        m_Movement *= currentMoveSpeed;
     }
 
     void OnAnimatorMove()

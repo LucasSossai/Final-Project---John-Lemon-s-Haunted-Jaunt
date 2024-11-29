@@ -5142,7 +5142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1367887565}
-  remainingTime: 10
+  remainingTime: 180
   gameEnding: {fileID: 35207290}
 --- !u!1 &1523885050
 GameObject:
@@ -5914,6 +5914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1254216281615953710, guid: 3232f5bc9ea89134289d78a976bf34b6,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
